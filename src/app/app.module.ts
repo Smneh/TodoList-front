@@ -11,7 +11,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { TodoListComponent } from './home-page/todo-list/todo-list.component';
 import { CreateTodoComponent } from './home-page/create-todo/create-todo.component';
 import { AuthenticationService } from './Authentication/authentication.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TodoItemComponent } from './home-page/todo-list/todo-item/todo-item.component';
 import { JwtInterceptor } from './jwt.interceptor';
 import { TodoService } from './home-page/todo.service';
@@ -28,7 +28,11 @@ import { TodoService } from './home-page/todo.service';
     TodoItemComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
-  providers: [AuthenticationService, JwtInterceptor, TodoService],
+  providers: [
+    AuthenticationService,
+    TodoService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

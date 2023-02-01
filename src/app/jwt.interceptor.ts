@@ -5,10 +5,14 @@ import {
   HttpEvent,
   HttpInterceptor,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
+import { TodoService } from './home-page/todo.service';
+import { Todo } from './home-page/todo.model';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
+  constructor(private todoService: TodoService) {}
+
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
@@ -16,7 +20,7 @@ export class JwtInterceptor implements HttpInterceptor {
     request = request.clone({
       setHeaders: {
         Authorization:
-          'Bearer ' + JSON.parse(localStorage.getItem('token') || '{}').token,
+          'Bearer ' + localStorage.getItem('token')
       },
     });
     return next.handle(request);

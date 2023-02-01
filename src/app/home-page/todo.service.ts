@@ -16,13 +16,6 @@ export class TodoService {
   private getTodosUrl = this.baseUrl + 'todos/getUserTodos';
   userToken = localStorage.getItem('token');
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${this.userToken}`,
-    }),
-  };
-
   constructor(private http: HttpClient) {}
 
   getTodos() {
@@ -40,8 +33,7 @@ export class TodoService {
   }
 
   fetchTodos() {
-    console.log(this.httpOptions)
-    return this.http.get<Todo[]>(this.getTodosUrl, this.httpOptions).subscribe({
+    return this.http.get<Todo[]>(this.getTodosUrl).subscribe({
       next: (todos) => {
         this.todos = todos;
         this.todosChanged.next(this.todos.slice());
@@ -54,7 +46,7 @@ export class TodoService {
 
   createTodo(todoTile: string) {
     return this.http
-      .post<Todo>(`${this.baseUrl}todos`, `"${todoTile}"`, this.httpOptions)
+      .post<Todo>(`${this.baseUrl}todos`, `"${todoTile}"`)
       .subscribe({
         next: (todo) => {
           this.addTodo(todo);
@@ -67,7 +59,7 @@ export class TodoService {
 
   updateTodo(id: string, todo: Object) {
     return this.http
-      .put(`${this.baseUrl}todos/${id}`, todo, this.httpOptions)
+      .put(`${this.baseUrl}todos/${id}`, todo)
       .subscribe({
         error: (error) => {
           alert(error.statusText);
@@ -77,7 +69,7 @@ export class TodoService {
 
   deleteTodo(id: string) {
     return this.http
-      .delete(`${this.baseUrl}todos/${id}`, this.httpOptions)
+      .delete(`${this.baseUrl}todos/${id}`)
       .subscribe({
         next: () => {
           this.removeTodo(id);
