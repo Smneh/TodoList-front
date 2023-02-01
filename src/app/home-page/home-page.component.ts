@@ -15,7 +15,6 @@ export class HomePageComponent {
   constructor(private todoService: TodoService) {}
 
   ngOnInit() {
-    console.log(this.todos)
     this.todoService.fetchTodos();
     this.subscription = this.todoService.todosChanged.subscribe(
       (todos: Todo[]) => {

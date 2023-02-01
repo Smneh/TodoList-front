@@ -12,4 +12,8 @@ export class TodoListComponent {
   @Input() todos: Todo[] = [];
 
   constructor(private todoService: TodoService) {}
+
+  ngOnInit(){
+    this.todos = []
+  }
 }
