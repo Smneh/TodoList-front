@@ -21,4 +21,30 @@
   color: #a9a9a9;
 }
 
+.edit-btn{
+  background-color: #c77dff;
+  color: #eee;
+}
+
+.done-btn{
+  background-color: #4dcaa6;
+  color: #eee;
+}
+
+.delete-btn{
+  background-color: #d88c9a;
+  color: #eee;
+}
+
+.title-input ,.title-input:focus{
+  outline: 0;
+  border: 0;
+}
+
+.check-box{
+  cursor: pointer;
+  accent-color: #4c956c;
+}
+
+
 

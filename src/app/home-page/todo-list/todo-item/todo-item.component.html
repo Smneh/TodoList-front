@@ -1,5 +1,6 @@
 <li class="todo-item">
     <input
+      class="check-box"
       type="checkbox"
       [(ngModel)]="todo.isCompleted"
       (change)="updateTodo()">
@@ -13,7 +14,7 @@
 
     <ng-template #editingTodo>
         <input
-          class="todo-title"
+          class="todo-title title-input"
           type="text"
           [(ngModel)] = "todo.title"
           autofocus>
@@ -22,8 +23,9 @@
     <div class="edit-btn-container" *ngIf="!editing; else doneBtn" >
       <button
         [ngClass]="{disabled: todo.isCompleted}"
-        class="btn btn-warning"
-        (click)="editStart()">
+        class="btn edit-btn"
+        (click)="editStart()"
+        [disabled]="todo.isCompleted">
           Edit
       </button>
     </div>
@@ -31,7 +33,7 @@
     <ng-template #doneBtn>
     <div class="edit-btn-container">
         <button
-          class="btn btn-success"
+          class="btn done-btn"
           (click)="editDone();" >
             Done
           </button>
@@ -40,7 +42,7 @@
 
     <div>
         <button
-          class="btn btn-danger"
+          class="btn delete-btn"
           (click)="deleteTodo()">
             Delete
           </button>
