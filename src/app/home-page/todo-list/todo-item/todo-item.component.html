@@ -8,13 +8,13 @@
     <div
       class="todo-title"
       *ngIf="!editing; else editingTodo"
-      (dblclick)="toggleEdit()"
       [ngClass]="{completed: todo.isCompleted}">
       {{todo.title}}
     </div>
 
     <ng-template #editingTodo>
         <input
+          class="todo-title"
           type="text"
           [(ngModel)] = "todo.title"
           autofocus>
@@ -24,7 +24,7 @@
       <button
         [ngClass]="{disabled: todo.isCompleted}"
         class="btn btn-warning"
-        (click)="toggleEdit()">
+        (click)="editStart()">
           Edit
       </button>
     </div>

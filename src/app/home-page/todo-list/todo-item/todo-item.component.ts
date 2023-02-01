@@ -11,21 +11,32 @@ export class TodoItemComponent {
   @Input() todo: Todo;
 
   editing = false;
+  lastTitle = '';
 
   constructor(private todoService: TodoService) {
     this.todo = {} as Todo;
   }
 
   updateTodo() {
-    this.todoService.updateTodo(this.todo.id, {
-      title: this.todo.title,
-      isCompleted: this.todo.isCompleted,
-    });
+    if(this.todo.title.trim() !== ''){
+      this.todoService.updateTodo(this.todo.id, {
+        title: this.todo.title,
+        isCompleted: this.todo.isCompleted,
+      });
+    }
+    else{
+      this.todo.title = this.lastTitle;
+    }
   }
 
   editDone() {
     this.toggleEdit();
     this.updateTodo();
+  }
+
+  editStart(){
+    this.lastTitle = this.todo.title;
+    this.toggleEdit()
   }
 
   toggleEdit() {
