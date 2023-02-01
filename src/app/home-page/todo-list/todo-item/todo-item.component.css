@@ -16,4 +16,9 @@
   max-width: 400px;
 }
 
+.todo-title.completed{
+  text-decoration: line-through;
+  color: #a9a9a9;
+}
+
 
