@@ -1,0 +1,9 @@
+<div >
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Create new todo"
+    [(ngModel)]="newTodoTitle"
+    (keyup.enter) = "addTodo()"
+  >
+</div>

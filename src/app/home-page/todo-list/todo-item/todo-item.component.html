@@ -1,0 +1,49 @@
+<li class="todo-item">
+    <input
+      type="checkbox"
+      class="circle"
+      [(ngModel)]="todo.isCompleted"
+      (change)="updateTodo()">
+
+    <div
+      class="todo-title"
+      *ngIf="!editing; else editingTodo"
+      (dblclick)="toggleEdit()"
+      [ngClass]="{completed: todo.isCompleted}">
+      {{todo.title}}
+    </div>
+
+    <ng-template #editingTodo>
+        <input
+          type="text"
+          [(ngModel)] = "todo.title"
+          autofocus>
+    </ng-template>
+
+    <div class="edit-btn-container" *ngIf="!editing; else doneBtn" >
+      <button
+        [ngClass]="{disabled: todo.isCompleted}"
+        class="btn btn-warning"
+        (click)="toggleEdit()">
+          Edit
+      </button>
+    </div>
+
+    <ng-template #doneBtn>
+    <div class="edit-btn-container">
+        <button
+          class="btn btn-success"
+          (click)="editDone();" >
+            Done
+          </button>
+    </div>
+    </ng-template>
+
+    <div>
+        <button
+          class="btn btn-danger"
+          (click)="deleteTodo()">
+            Delete
+          </button>
+    </div>
+</li>

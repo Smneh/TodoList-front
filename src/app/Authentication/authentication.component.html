@@ -1,0 +1,4 @@
+<div class="form-wrapper">
+  <app-login *ngIf="!isSigningUp" (onChangeView)="changeView()"></app-login>
+  <app-signup *ngIf="isSigningUp" (onChangeView)="changeView()"></app-signup>
+</div>
