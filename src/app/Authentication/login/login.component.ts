@@ -29,7 +29,10 @@ export class LoginComponent {
           this.router.navigate(['home-page']);
         },
         error: (error) => {
-          this.errorMessage = error.error;
+          if(error.status == 0)
+            this.errorMessage = 'Server Error';
+          else
+            this.errorMessage = error.error;
         },
       });
     }
