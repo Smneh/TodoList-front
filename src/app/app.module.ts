@@ -15,6 +15,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TodoItemComponent } from './home-page/todo-list/todo-item/todo-item.component';
 import { JwtInterceptor } from './jwt.interceptor';
 import { TodoService } from './home-page/todo.service';
+import { HomeHeaderComponent } from './home-page/home-header/home-header.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { TodoService } from './home-page/todo.service';
     TodoListComponent,
     CreateTodoComponent,
     TodoItemComponent,
+    HomeHeaderComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [
