@@ -36,7 +36,7 @@ export class TodoItemComponent {
 
   editStart(){
     this.lastTitle = this.todo.title;
-    this.toggleEdit()
+    this.toggleEdit();
   }
 
   toggleEdit() {

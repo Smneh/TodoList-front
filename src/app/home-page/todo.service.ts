@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map, Observable, Subject, tap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Subject } from 'rxjs';
 import { environment } from '../environment/environment';
 import { Todo } from './todo.model';
 
@@ -28,7 +28,7 @@ export class TodoService {
   }
 
   addTodo(todo: Todo) {
-    this.todos.push(todo);
+    this.todos.unshift(todo);
     this.todosChanged.next(this.todos.slice());
   }
 
